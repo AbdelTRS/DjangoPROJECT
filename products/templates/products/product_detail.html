@@ -1,28 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Product Detail</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 
 <body>
-    <p> {{ data.name }}</p><br />
-    <img src="{{ data.image }}" alt=""><br />
-    <p>Prix : {{ data.price }} € </p><br />
-    <p>Qtité: {{ data.quantity }}</p><br />
+    <div class="card">
+        <p> <strong>{{ data.name }}</strong></p><br />
+        <img src="{{ data.image }}" alt=""><br />
+        <p>Prix : {{ data.price }} € </p><br />
+        <p>Qtity: {{ data.quantity }}</p><br />
 
-    <form action="/products/update/{{data.id}}" method="POST">
-        {% csrf_token %}
-        <select name="quantity" id="">
-            {% for i in range %}
-            <option value="{{ i }}"> {{ i }} </option>
-            {% endfor %}
-        </select>
-        <button type="submit">Buy</button>
-    </form>
-    <p> <a href="{% url 'products:product_list' %}">View All Products</a>
-    </p>
+        <form action="/products/update/{{data.id}}" method="POST">
+            {% csrf_token %}
+            <select name="quantity" id="">
+                {% for i in range %}
+                <option value="{{ i }}"> {{ i }} </option>
+                {% endfor %}
+            </select> <br>
+            <button type="submit">Buy</button>
+        </form>
+        <p> <a href="{% url 'products:product_list' %}">View All Products</a>
+        </p>
+    </div>
 </body>
 
 </html>
